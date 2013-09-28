@@ -8,9 +8,9 @@ Check this code sample to see the possibilities of this library:
 
     <?php
     
-    use pallo\library\event\EventManager;
+    use pallo\library\event\GenericEventManager;
 
-    $eventManager = new EventManager();
+    $eventManager = new GenericEventManager();
     
     // add some event listeners
     $eventManager->registerEventListener('event', 'callback'); // provide a name of the event and a callback
