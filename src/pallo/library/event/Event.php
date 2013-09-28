@@ -36,10 +36,10 @@ class Event {
      * empty or invalid
      */
     public function __construct($name, array $arguments = null) {
-    	$this->setName($name);
+        $this->setName($name);
 
-    	$this->arguments = $arguments;
-    	$this->preventDefault = false;
+        $this->arguments = $arguments;
+        $this->preventDefault = false;
     }
 
     /**
@@ -47,7 +47,7 @@ class Event {
      * @return string
      */
     public function __toString() {
-    	return $this->name;
+        return $this->name;
     }
 
     /**
@@ -58,11 +58,11 @@ class Event {
      * empty or invalid
      */
     protected function setName($name) {
-    	if (!is_string($name) || $name == '') {
-    		throw new EventException('Could not set the name of the event: provided name is invalid or empty');
-    	}
+        if (!is_string($name) || $name == '') {
+            throw new EventException('Could not set the name of the event: provided name is invalid or empty');
+        }
 
-    	$this->name = $name;
+        $this->name = $name;
     }
 
     /**
@@ -81,21 +81,21 @@ class Event {
      * @return null
      */
     public function setArgument($name, $value = null) {
-    	if ($value === null) {
-    		if (isset($this->arguments[$name])) {
-    			unset($this->arguments[$name]);
-    		}
+        if ($value === null) {
+            if (isset($this->arguments[$name])) {
+                unset($this->arguments[$name]);
+            }
 
-    		if (!$this->arguments) {
-    			$this->arguments = null;
-    		}
-    	} else {
-    		if ($this->arguments === null) {
-    			$this->arguments = array($name => $value);
-    		} else {
-    			$this->arguments[$name] = $value;
-    		}
-    	}
+            if (!$this->arguments) {
+                $this->arguments = null;
+            }
+        } else {
+            if ($this->arguments === null) {
+                $this->arguments = array($name => $value);
+            } else {
+                $this->arguments[$name] = $value;
+            }
+        }
     }
 
     /**
@@ -107,11 +107,11 @@ class Event {
      * argument is not set
      */
     public function getArgument($name, $default = null) {
-    	if (!isset($this->arguments[$name])) {
-    		return $default;
-    	}
+        if (!isset($this->arguments[$name])) {
+            return $default;
+        }
 
-    	return $this->arguments[$name];
+        return $this->arguments[$name];
     }
 
     /**
@@ -119,11 +119,11 @@ class Event {
      * @return array
      */
     public function getArguments() {
-    	if ($this->arguments === null) {
-    		return array();
-    	}
+        if ($this->arguments === null) {
+            return array();
+        }
 
-    	return $this->arguments;
+        return $this->arguments;
     }
 
     /**
@@ -132,7 +132,7 @@ class Event {
      * @return null
      */
     public function setPreventDefault($flag = true) {
-    	$this->preventDefault = $flag;
+        $this->preventDefault = $flag;
     }
 
     /**
@@ -140,7 +140,7 @@ class Event {
      * @return boolean True to stop the listener invokation, false to continue
      */
     public function isPreventDefault() {
-    	return $this->preventDefault;
+        return $this->preventDefault;
     }
 
 }

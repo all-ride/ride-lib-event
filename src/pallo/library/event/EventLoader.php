@@ -13,6 +13,6 @@ interface EventLoader {
      * @param EventManager $eventManager Instance of the event manager
      * @return null
      */
-    public function loadEvents($event, EventManager $eventManager);
+    public function loadEventListeners($event, EventManager $eventManager);
 
 }
