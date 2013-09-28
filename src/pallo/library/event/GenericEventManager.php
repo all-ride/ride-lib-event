@@ -3,6 +3,7 @@
 namespace pallo\library\event;
 
 use pallo\library\event\exception\EventException;
+use pallo\library\event\loader\EventLoader;
 use pallo\library\reflection\Invoker;
 use pallo\library\reflection\ReflectionHelper;
 

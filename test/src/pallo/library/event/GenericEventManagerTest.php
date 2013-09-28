@@ -2,8 +2,6 @@
 
 namespace pallo\library\event;
 
-use pallo\library\reflection\Callback;
-
 use \PHPUnit_Framework_TestCase;
 use \ReflectionProperty;
 
@@ -51,7 +49,7 @@ class GenericEventManagerTest extends PHPUnit_Framework_TestCase {
     public function testEventLoader() {
         $eventManager = new GenericEventManager();
 
-        $loader = $this->getMock('pallo\\library\\event\\EventLoader', array('loadEventListeners'));
+        $loader = $this->getMock('pallo\\library\\event\\loader\\EventLoader', array('loadEventListeners'));
         $loader->expects($this->once())->method('loadEventListeners');
 
         $this->assertNull($eventManager->getEventLoader());
