@@ -7,7 +7,7 @@ Event library of the PHP Pallo framework.
 The EventManager interface is the facade for the event system.
 You can add and remove event listeners and trigger events from here.
 
-The GenericEventManager has lazy load capabilities through EventLoader interface.
+The GenericEventManager has lazy load capabilities through the EventLoader interface.
 
 ## Code Sample
 
@@ -23,9 +23,9 @@ Check this code sample to see the possibilities of this library:
     $eventManager = new GenericEventManager();
         
     // add some event listeners
-    $eventManager->registerEventListener('event', 'callback'); // provide a name of the event and a callback
-    $eventManager->registerEventListener('event', 'callback', 10); // added a weight to influence order
-    $eventManager->registerEventListener('test', 'onEvent');
+    $eventManager->addEventListener('event', 'callback'); // provide a name of the event and a callback
+    $eventManager->addEventListener('event', 'callback', 10); // added a weight to influence order
+    $eventManager->addEventListener('test', 'onEvent');
     
     // trigger a event
     $eventManager->triggerEvent('test');
