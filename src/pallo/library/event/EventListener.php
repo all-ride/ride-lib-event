@@ -3,7 +3,6 @@
 namespace pallo\library\event;
 
 use pallo\library\event\exception\EventException;
-use pallo\library\reflection\Callback;
 
 /**
  * Definition of a event listener
@@ -36,9 +35,9 @@ class EventListener {
      * @return null
      */
     public function __construct($event, $callback, $weight = null) {
-    	$this->setEvent($event);
-    	$this->setCallback($callback);
-    	$this->setWeight($weight);
+        $this->setEvent($event);
+        $this->setCallback($callback);
+        $this->setWeight($weight);
     }
 
     /**
@@ -46,7 +45,23 @@ class EventListener {
      * @return string
      */
     public function __toString() {
-    	return $this->event . ' ' . $this->callback . ($this->weight ? ' #' . $this->weight : '');
+        $callback = $this->callback;
+
+        if (is_array($callback)) {
+            if (isset($callback[0]) && isset($callback[1])) {
+                if (is_string($callback[0])) {
+                    $class = $callback[0] . '::';
+                } else {
+                    $class = get_class($callback[0]) . '->';
+                }
+
+                $callback = $class . $callback[1];
+            } else {
+                $callback = 'Array';
+            }
+        }
+
+        return $this->event . ' ' . $callback . ($this->weight ? ' #' . $this->weight : '');
     }
 
 
@@ -58,11 +73,11 @@ class EventListener {
      * empty or invalid
      */
     protected function setEvent($event) {
-    	if (!is_string($event) || $event == '') {
-    		throw new EventException('Could not set the name of the event: provided name is invalid or empty');
-    	}
+        if (!is_string($event) || $event == '') {
+            throw new EventException('Could not set the name of the event: provided name is invalid or empty');
+        }
 
-    	$this->event = $event;
+        $this->event = $event;
     }
 
     /**
@@ -70,21 +85,25 @@ class EventListener {
      * @return string
      */
     public function getEvent() {
-    	return $this->event;
+        return $this->event;
     }
 
     /**
      * Sets the callback of this listener
-     * @param string|array $callback
+     * @param string|array|pallo\library\Callback $callback
      * @return null
      */
     protected function setCallback($callback) {
-    	$this->callback = new Callback($callback);
+        if (empty($callback)) {
+            throw new EventException('Could not set the callback of the event: provided callback is empty');
+        }
+
+        $this->callback = $callback;
     }
 
     /**
      * Gets the callback of this listener
-     * @return pallo\library\Callback|array|string
+     * @return string|array|pallo\library\Callback
      */
     public function getCallback() {
         return $this->callback;
@@ -98,11 +117,11 @@ class EventListener {
      * weight is invalid
      */
     public function setWeight($weight) {
-    	if ($weight !== null && (!is_integer($weight) || $weight <= 0)) {
-    		throw new EventException('Could not set the weight of the event: provided weight is not a positive number');
-    	}
+        if ($weight !== null && (!is_integer($weight) || $weight <= 0)) {
+            throw new EventException('Could not set the weight of the event: provided weight is not a positive number');
+        }
 
-    	$this->weight = $weight;
+        $this->weight = $weight;
     }
 
     /**

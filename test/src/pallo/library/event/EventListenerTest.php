@@ -8,34 +8,60 @@ use \PHPUnit_Framework_TestCase;
 
 class EventListenerTest extends PHPUnit_Framework_TestCase {
 
-	public function testConstruct() {
-		$event = 'event';
-		$callback = 'callback';
-		$weight = 5;
+    public function testConstruct() {
+        $event = 'event';
+        $callback = 'callback';
+        $weight = 5;
 
-		$listener = new EventListener($event, $callback, $weight);
+        $listener = new EventListener($event, $callback, $weight);
 
-		$this->assertEquals($event, $listener->getEvent());
-		$this->assertEquals(new Callback($callback), $listener->getCallback());
-		$this->assertEquals($weight, $listener->getWeight());
-	}
+        $this->assertEquals($event, $listener->getEvent());
+        $this->assertEquals(new Callback($callback), $listener->getCallback());
+        $this->assertEquals($weight, $listener->getWeight());
+    }
 
-	/**
-	 * @dataProvider providerConstructWithInvalidNameThrowsException
-	 * @expectedException pallo\library\event\exception\EventException
-	 */
-	public function testConstructWithInvalidNameThrowsException($name, $callback, $weight) {
-		new EventListener($name, $callback, $weight);
-	}
+    /**
+     * @dataProvider providerConstructWithInvalidArgumentThrowsException
+     * @expectedException pallo\library\event\exception\EventException
+     */
+    public function testConstructWithInvalidArgumentThrowsException($name, $callback, $weight) {
+        new EventListener($name, $callback, $weight);
+    }
 
-	public function providerConstructWithInvalidNameThrowsException() {
-		return array(
-			array(array(), 'callback', null),
-			array($this, 'callback', null),
-			array('event', 'callback', array()),
-			array('event', 'callback', $this),
-			array('event', 'callback', -500),
-		);
-	}
+    public function providerConstructWithInvalidArgumentThrowsException() {
+        return array(
+            array(array(), 'callback', null),
+            array($this, 'callback', null),
+            array('event', null, null),
+            array('event', 0, null),
+            array('event', 'callback', array()),
+            array('event', 'callback', $this),
+            array('event', 'callback', -500),
+        );
+    }
+
+    public function testToString() {
+        $event = 'event';
+
+        $callback = 'function';
+        $listener = new EventListener($event, $callback);
+        $this->assertEquals('event function', (string) $listener);
+
+        $callback = array('someClass', 'someMethod');
+        $listener = new EventListener($event, $callback);
+        $this->assertEquals('event someClass::someMethod', (string) $listener);
+
+        $callback = array($this, 'someMethod');
+        $listener = new EventListener($event, $callback);
+        $this->assertEquals('event pallo\\library\\event\\EventListenerTest->someMethod', (string) $listener);
+
+        $callback = array('class' => $this, 'method' => 'someMethod');
+        $listener = new EventListener($event, $callback);
+        $this->assertEquals('event Array', (string) $listener);
+
+        $callback = array($this, 'someMethod');
+        $listener = new EventListener($event, $callback, 15);
+        $this->assertEquals('event pallo\\library\\event\\EventListenerTest->someMethod #15', (string) $listener);
+    }
 
 }
