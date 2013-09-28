@@ -1,6 +1,8 @@
 <?php
 
-namespace pallo\library\event;
+namespace pallo\library\event\loader;
+
+use pallo\library\event\EventManager;
 
 /**
  * Interface for a lazy event loader

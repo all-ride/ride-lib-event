@@ -117,11 +117,11 @@ class EventListener {
      * weight is invalid
      */
     public function setWeight($weight) {
-        if ($weight !== null && (!is_integer($weight) || $weight <= 0)) {
+        if ($weight !== null && (!is_numeric($weight) || $weight <= 0)) {
             throw new EventException('Could not set the weight of the event: provided weight is not a positive number');
         }
 
-        $this->weight = $weight;
+        $this->weight = (integer) $weight;
     }
 
     /**
