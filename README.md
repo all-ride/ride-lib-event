@@ -1,4 +1,4 @@
-# Pallo: System Library
+# Pallo: Event Library
 
 Event library of the PHP Pallo framework.
 
