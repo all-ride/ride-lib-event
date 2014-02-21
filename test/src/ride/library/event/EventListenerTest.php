@@ -1,8 +1,8 @@
 <?php
 
-namespace pallo\library\event;
+namespace ride\library\event;
 
-use pallo\library\reflection\Callback;
+use ride\library\reflection\Callback;
 
 use \PHPUnit_Framework_TestCase;
 
@@ -22,7 +22,7 @@ class EventListenerTest extends PHPUnit_Framework_TestCase {
 
     /**
      * @dataProvider providerConstructWithInvalidArgumentThrowsException
-     * @expectedException pallo\library\event\exception\EventException
+     * @expectedException ride\library\event\exception\EventException
      */
     public function testConstructWithInvalidArgumentThrowsException($name, $callback, $weight) {
         new EventListener($name, $callback, $weight);
@@ -53,7 +53,7 @@ class EventListenerTest extends PHPUnit_Framework_TestCase {
 
         $callback = array($this, 'someMethod');
         $listener = new EventListener($event, $callback);
-        $this->assertEquals('event pallo\\library\\event\\EventListenerTest->someMethod', (string) $listener);
+        $this->assertEquals('event ride\\library\\event\\EventListenerTest->someMethod', (string) $listener);
 
         $callback = array('class' => $this, 'method' => 'someMethod');
         $listener = new EventListener($event, $callback);
@@ -61,7 +61,7 @@ class EventListenerTest extends PHPUnit_Framework_TestCase {
 
         $callback = array($this, 'someMethod');
         $listener = new EventListener($event, $callback, 15);
-        $this->assertEquals('event pallo\\library\\event\\EventListenerTest->someMethod #15', (string) $listener);
+        $this->assertEquals('event ride\\library\\event\\EventListenerTest->someMethod #15', (string) $listener);
     }
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace pallo\library\event\loader\io;
+namespace ride\library\event\loader\io;
 
 /**
  * Chained implementation of a lazy event loader

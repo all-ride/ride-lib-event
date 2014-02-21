@@ -1,6 +1,6 @@
 <?php
 
-namespace pallo\library\event;
+namespace ride\library\event;
 
 use \PHPUnit_Framework_TestCase;
 
@@ -19,7 +19,7 @@ class EventTest extends PHPUnit_Framework_TestCase {
 
     /**
      * @dataProvider providerConstructWithInvalidNameThrowsException
-     * @expectedException pallo\library\event\exception\EventException
+     * @expectedException ride\library\event\exception\EventException
      */
     public function testConstructWithInvalidNameThrowsException($name) {
         new Event($name);

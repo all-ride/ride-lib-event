@@ -1,8 +1,8 @@
 <?php
 
-namespace pallo\library\event\loader;
+namespace ride\library\event\loader;
 
-use pallo\library\event\GenericEventManager;
+use ride\library\event\GenericEventManager;
 
 use \PHPUnit_Framework_TestCase;
 use \ReflectionProperty;
@@ -10,7 +10,7 @@ use \ReflectionProperty;
 class ChainedEventLoaderTest extends PHPUnit_Framework_TestCase {
 
     /**
-     * @var pallo\libarary\event\loader\ChainedEventLoader
+     * @var ride\libarary\event\loader\ChainedEventLoader
      */
     protected $eventLoader;
 
@@ -26,9 +26,9 @@ class ChainedEventLoaderTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testAddAndRemove() {
-        $loader1 = $this->getMock('pallo\\library\\event\\loader\\EventLoader');
-        $loader2 = $this->getMock('pallo\\library\\event\\loader\\EventLoader');
-        $loader3 = $this->getMock('pallo\\library\\event\\loader\\EventLoader');
+        $loader1 = $this->getMock('ride\\library\\event\\loader\\EventLoader');
+        $loader2 = $this->getMock('ride\\library\\event\\loader\\EventLoader');
+        $loader3 = $this->getMock('ride\\library\\event\\loader\\EventLoader');
 
         $this->eventLoader->addEventLoader($loader1);
         $this->eventLoader->addEventLoader($loader2);
@@ -46,10 +46,10 @@ class ChainedEventLoaderTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testLoadEventListeners() {
-        $loader1 = $this->getMock('pallo\\library\\event\\loader\\EventLoader');
+        $loader1 = $this->getMock('ride\\library\\event\\loader\\EventLoader');
         $loader1->expects($this->once())->method('loadEventListeners');
 
-        $loader2 = $this->getMock('pallo\\library\\event\\loader\\EventLoader');
+        $loader2 = $this->getMock('ride\\library\\event\\loader\\EventLoader');
         $loader2->expects($this->once())->method('loadEventListeners');
 
         $this->eventLoader->addEventLoader($loader1);

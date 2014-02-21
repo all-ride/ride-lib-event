@@ -1,6 +1,6 @@
 <?php
 
-namespace pallo\library\event;
+namespace ride\library\event;
 
 use \PHPUnit_Framework_TestCase;
 use \ReflectionProperty;
@@ -23,7 +23,7 @@ class GenericEventManagerTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals(GenericEventManager::DEFAULT_MAX_EVENT_LISTENERS, $this->getProperty($eventManager, 'maxEventListeners'));
         $this->assertNotNull($this->getProperty($eventManager, 'invoker'));
 
-        $invoker = $this->getMock('pallo\\library\\reflection\\Invoker');
+        $invoker = $this->getMock('ride\\library\\reflection\\Invoker');
         $eventManager = new GenericEventManager($invoker, $maxEventListeners);
         $this->assertEquals($maxEventListeners, $this->getProperty($eventManager, 'maxEventListeners'));
         $this->assertEquals($invoker, $this->getProperty($eventManager, 'invoker'));
@@ -31,7 +31,7 @@ class GenericEventManagerTest extends PHPUnit_Framework_TestCase {
 
     /**
      * @dataProvider providerConstructWithInvalidMaxEventListenersThrowsException
-     * @expectedException pallo\library\event\exception\EventException
+     * @expectedException ride\library\event\exception\EventException
      */
     public function testConstructWithInvalidMaxEventListenersThrowsException($maxEventListeners) {
         new GenericEventManager(null, $maxEventListeners);
@@ -49,7 +49,7 @@ class GenericEventManagerTest extends PHPUnit_Framework_TestCase {
     public function testEventLoader() {
         $eventManager = new GenericEventManager();
 
-        $loader = $this->getMock('pallo\\library\\event\\loader\\EventLoader', array('loadEventListeners'));
+        $loader = $this->getMock('ride\\library\\event\\loader\\EventLoader', array('loadEventListeners'));
         $loader->expects($this->once())->method('loadEventListeners');
 
         $this->assertNull($eventManager->getEventLoader());
@@ -83,7 +83,7 @@ class GenericEventManagerTest extends PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @expectedException pallo\library\event\exception\EventException
+     * @expectedException ride\library\event\exception\EventException
      */
     public function testAddEventListenerThrowsExceptionWhenListenerLimitReached() {
         $eventManager = new GenericEventManager(null, 3);
@@ -97,7 +97,7 @@ class GenericEventManagerTest extends PHPUnit_Framework_TestCase {
 
     /**
      * @dataProvider providerAddEventListenerWithInvalidNameThrowsException
-     * @expectedException pallo\library\event\exception\EventException
+     * @expectedException ride\library\event\exception\EventException
      */
     public function testAddEventListenerWithInvalidNameThrowsException($name) {
         $eventManager = new GenericEventManager();
@@ -113,7 +113,7 @@ class GenericEventManagerTest extends PHPUnit_Framework_TestCase {
     }
 
     /**
-     * @expectedException pallo\library\event\exception\EventException
+     * @expectedException ride\library\event\exception\EventException
      */
     public function testAddEventListenerWithExistingWeightThrowsException() {
         $eventManager = new GenericEventManager();
@@ -126,7 +126,7 @@ class GenericEventManagerTest extends PHPUnit_Framework_TestCase {
 
     /**
      * @dataProvider providerAddEventListenerWithInvalidWeightThrowsException
-     * @expectedException pallo\library\event\exception\EventException
+     * @expectedException ride\library\event\exception\EventException
      */
     public function testAddEventListenerWithInvalidWeightThrowsException($weight) {
         $eventManager = new GenericEventManager();
@@ -213,7 +213,7 @@ class GenericEventManagerTest extends PHPUnit_Framework_TestCase {
 
     /**
      * @dataProvider providerEventWithInvalidEventThrowsException
-     * @expectedException pallo\library\event\exception\EventException
+     * @expectedException ride\library\event\exception\EventException
      */
     public function testRemoveEventListenerWithInvalidEventThrowsException($event) {
         $eventManager = new GenericEventManager();
@@ -305,7 +305,7 @@ class GenericEventManagerTest extends PHPUnit_Framework_TestCase {
 
     /**
      * @dataProvider providerEventWithInvalidEventThrowsException
-     * @expectedException pallo\library\event\exception\EventException
+     * @expectedException ride\library\event\exception\EventException
      */
     public function testTriggerEventWithInvalidEventThrowsException($event) {
         $eventManager = new GenericEventManager();
