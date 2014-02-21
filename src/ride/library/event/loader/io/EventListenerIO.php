@@ -1,6 +1,6 @@
 <?php
 
-namespace pallo\library\event\loader\io;
+namespace ride\library\event\loader\io;
 
 /**
  * Interface to read event listener definitions from a data source

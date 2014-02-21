@@ -1,9 +1,9 @@
 <?php
 
-namespace pallo\library\event\loader;
+namespace ride\library\event\loader;
 
-use pallo\library\event\loader\io\EventListenerIO;
-use pallo\library\event\EventManager;
+use ride\library\event\loader\io\EventListenerIO;
+use ride\library\event\EventManager;
 
 /**
  * Generic implementation of a event loader
@@ -12,7 +12,7 @@ class GenericEventLoader implements EventLoader {
 
     /**
      * I/O implementation
-     * @var pallo\library\event\loader\io\EventListenerIO
+     * @var ride\library\event\loader\io\EventListenerIO
      */
     protected $io;
 
@@ -24,7 +24,7 @@ class GenericEventLoader implements EventLoader {
 
     /**
      * Constructs a new event loader
-     * @param pallo\library\event\loader\io\EventIO $io
+     * @param ride\library\event\loader\io\EventIO $io
      * @return null
      */
     public function __construct(EventListenerIO $io) {
