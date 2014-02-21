@@ -1,6 +1,6 @@
-# Pallo: Event Library
+# Ride: Event Library
 
-Event library of the PHP Pallo framework.
+Event library of the PHP Ride framework.
 
 ## EventManager
 
@@ -15,10 +15,10 @@ Check this code sample to see the possibilities of this library:
 
     <?php
     
-    use pallo\library\event\loader\io\EventListenerIO;
-    use pallo\library\event\loader\GenericEventLoader;
-    use pallo\library\event\GenericEventManager;
-    use pallo\library\event\Event;
+    use ride\library\event\loader\io\EventListenerIO;
+    use ride\library\event\loader\GenericEventLoader;
+    use ride\library\event\GenericEventManager;
+    use ride\library\event\Event;
 
     $eventManager = new GenericEventManager();
         
