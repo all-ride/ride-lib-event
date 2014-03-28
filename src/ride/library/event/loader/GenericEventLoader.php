@@ -12,7 +12,7 @@ class GenericEventLoader implements EventLoader {
 
     /**
      * I/O implementation
-     * @var ride\library\event\loader\io\EventListenerIO
+     * @var \ride\library\event\loader\io\EventListenerIO
      */
     protected $io;
 
@@ -24,7 +24,7 @@ class GenericEventLoader implements EventLoader {
 
     /**
      * Constructs a new event loader
-     * @param ride\library\event\loader\io\EventIO $io
+     * @param \ride\library\event\loader\io\EventIO $io
      * @return null
      */
     public function __construct(EventListenerIO $io) {

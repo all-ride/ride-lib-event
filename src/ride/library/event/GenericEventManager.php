@@ -20,7 +20,7 @@ class GenericEventManager implements EventManager {
 
     /**
      * Instance of the invoker
-     * @var ride\library\reflection\Invoker
+     * @var \ride\library\reflection\Invoker
      */
     protected $invoker;
 
@@ -44,7 +44,7 @@ class GenericEventManager implements EventManager {
 
     /**
      * Lazy event loader
-     * @var ride\library\event\EventLoader
+     * @var \ride\library\event\EventLoader
      */
     protected $loader;
 
@@ -56,11 +56,11 @@ class GenericEventManager implements EventManager {
 
     /**
      * Constructs a new event manager
-     * @param ride\library\reflection\Invoker $invoker Invoker for callbacks
+     * @param \ride\library\reflection\Invoker $invoker Invoker for callbacks
      * @param integer $maxEventListeners Maximum number of event listeners for
      * each event
      * @return null
-     * @throws ride\library\event\exception\EventException when the provided
+     * @throws \ride\library\event\exception\EventException when the provided
      * maxEventListeners is not a positive number
      */
     public function __construct(Invoker $invoker = null, $maxEventListeners = self::DEFAULT_MAX_EVENT_LISTENERS) {
@@ -80,7 +80,7 @@ class GenericEventManager implements EventManager {
      * Sets the maximum number of event listeners for each event
      * @param int $maxEventListeners
      * @return null
-     * @throws ride\library\event\exception\EventException when the provided
+     * @throws \ride\library\event\exception\EventException when the provided
      * maxEventListeners is not a positive number
      */
     protected function setMaxEventListeners($maxEventListeners) {
@@ -114,7 +114,7 @@ class GenericEventManager implements EventManager {
      * Checks if there are event listeners registered for the provided event
      * @param string $event Name of the event
      * @return boolean
-     * @throws ride\library\event\exception\EventException when a invalid
+     * @throws \ride\library\event\exception\EventException when a invalid
      * event name has been provided
      */
     public function hasEventListeners($event) {
@@ -134,13 +134,13 @@ class GenericEventManager implements EventManager {
     /**
      * Adds a new event listener
      * @param string $event Name of the event
-     * @param string|array|ride\library\reflection\Callback $callback Callback
+     * @param string|array| \ride\library\reflection\Callback $callback Callback
      * of the event listener
      * @param string $weight Weight in the listener list
      * @return EventListener
-     * @throws ride\library\event\exception\EventException when a invalid
+     * @throws \ride\library\event\exception\EventException when a invalid
      * argument has been provided
-     * @throws ride\library\event\exception\EventException when the weight of
+     * @throws \ride\library\event\exception\EventException when the weight of
      * the event listener is invalid or already set
      */
     public function addEventListener($event, $callback, $weight = null) {
@@ -172,7 +172,7 @@ class GenericEventManager implements EventManager {
      * Gets the new weight for the provided event
      * @param string $event Name of the event
      * @return integer Weight for a new event listener
-     * @throws ride\library\event\exception\EventException when no weight
+     * @throws \ride\library\event\exception\EventException when no weight
      * could be found for the provided event
      */
     protected function getNewWeight($event) {
