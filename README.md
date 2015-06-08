@@ -13,48 +13,50 @@ The GenericEventManager has lazy load capabilities through the EventLoader inter
 
 Check this code sample to see the possibilities of this library:
 
-    <?php
-    
-    use ride\library\event\loader\io\EventListenerIO;
-    use ride\library\event\loader\GenericEventLoader;
-    use ride\library\event\GenericEventManager;
-    use ride\library\event\Event;
+```php
+<?php
 
-    $eventManager = new GenericEventManager();
-        
-    // add some event listeners
-    $eventManager->addEventListener('event', 'callback'); // provide a name of the event and a callback
-    $eventManager->addEventListener('event', 'callback', 10); // added a weight to influence order
-    $eventManager->addEventListener('test', 'onEvent');
+use ride\library\event\loader\io\EventListenerIO;
+use ride\library\event\loader\GenericEventLoader;
+use ride\library\event\GenericEventManager;
+use ride\library\event\Event;
+
+$eventManager = new GenericEventManager();
     
-    // trigger a event
-    $eventManager->triggerEvent('test');
-    $eventManager->triggerEvent('test', array('var' => 'value'));
+// add some event listeners
+$eventManager->addEventListener('event', 'callback'); // provide a name of the event and a callback
+$eventManager->addEventListener('event', 'callback', 10); // added a weight to influence order
+$eventManager->addEventListener('test', 'onEvent');
+
+// trigger a event
+$eventManager->triggerEvent('test');
+$eventManager->triggerEvent('test', array('var' => 'value'));
+
+// event listener callback
+function onEvent(Event $event) {
+    echo $event->getName();
+    echo $event->getArgument('var');
     
-    // event listener callback
-    function onEvent(Event $event) {
-        echo $event->getName();
-        echo $event->getArgument('var');
-        
-        $event->setPreventDefault(); // stop the listener invokation after this listener
-    }
-    
-    // you can lazy load the events through a EventLoader
-    class YourEventListenerIO implements EventListenerIO {
-    
-        public function readEventListeners() {
-            return array(
-                'event' => array(
-                    new EventListener('event', 'callback'),
-                );
+    $event->setPreventDefault(); // stop the listener invokation after this listener
+}
+
+// you can lazy load the events through a EventLoader
+class YourEventListenerIO implements EventListenerIO {
+
+    public function readEventListeners() {
+        return array(
+            'event' => array(
+                new EventListener('event', 'callback'),
             );
-        }
-    
+        );
     }
-    
-    $eventListenerIO = new YourEventListenerIO();
-    $eventLoader = new GenericEventLoader($eventListenerIO);
-    
-    // all the events to be read at the first trigger, but only loaded when the
-    // actual event is triggered
-    $eventManager->setEventLoader($eventLoader);
+
+}
+
+$eventListenerIO = new YourEventListenerIO();
+$eventLoader = new GenericEventLoader($eventListenerIO);
+
+// all the events to be read at the first trigger, but only loaded when the
+// actual event is triggered
+$eventManager->setEventLoader($eventLoader);
+```
