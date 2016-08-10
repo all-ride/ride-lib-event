@@ -41,6 +41,7 @@ class EventTest extends PHPUnit_Framework_TestCase {
 
         $event->setArgument('var', 'value2');
 
+        $this->assertEquals(array('name' => 'value', 'var' => 'value2'), $event->getArguments());
         $this->assertEquals('value2', $event->getArgument('var'));
 
         $event->setArgument('name');

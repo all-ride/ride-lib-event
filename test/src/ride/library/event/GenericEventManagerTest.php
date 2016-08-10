@@ -200,11 +200,8 @@ class GenericEventManagerTest extends PHPUnit_Framework_TestCase {
 
     public function testRemoveEventListenerWithouthArgumentsClearsAllEventListeners() {
         $eventManager = new GenericEventManager();
-
-        $event = 'event';
-        $callback = array($this, 'testClearEventListeners');
-
-        $eventManager->addEventListener($event, $callback);
+        $eventManager->addEventListener('event', array($this, 'testClearEventListeners'));
+        $eventManager->addEventListener('event2', array($this, 'testClearEventListeners'));
 
         $eventManager->removeEventListener();
 
@@ -221,8 +218,12 @@ class GenericEventManagerTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testTriggerEventWithoutEvents() {
+        $this->executed = false;
+
         $eventManager = new GenericEventManager();
         $eventManager->triggerEvent('test');
+
+        $this->assertFalse($this->executed);
     }
 
     public function testTriggerEventWithEvents() {

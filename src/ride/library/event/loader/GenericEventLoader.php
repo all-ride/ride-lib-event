@@ -6,7 +6,7 @@ use ride\library\event\loader\io\EventListenerIO;
 use ride\library\event\EventManager;
 
 /**
- * Generic implementation of a event loader
+ * Generic implementation of an event loader
  */
 class GenericEventLoader implements EventLoader {
 
@@ -52,7 +52,7 @@ class GenericEventLoader implements EventLoader {
 
     /**
      * Registers the event listeners for the provided
-     * @param unknown_type $event
+     * @param string $event Name of the event
      * @param EventManager $eventManager
      */
     protected function registerEventListeners($event, EventManager $eventManager) {
