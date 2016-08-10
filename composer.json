@@ -2,7 +2,6 @@
     "name": "ride/lib-event",
     "description": "Event library of the Ride framework",
     "license": "MIT",
-    "version": "0.3.2",
     "authors": [
         {
             "name": "Joris Vandeweerd",
@@ -10,8 +9,8 @@
         }
     ],
     "require": {
-        "ride/lib-reflection": ">=0.3.0"
-    },     
+        "ride/lib-reflection": "^1.0.0"
+    },
     "autoload": {
         "psr-0": {
             "ride\\library\\event\\": ["src/", "test/src/"]

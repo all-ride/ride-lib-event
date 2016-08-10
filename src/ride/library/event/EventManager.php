@@ -10,13 +10,13 @@ interface EventManager {
     /**
      * Adds a new event listener
      * @param string $event Name of the event
-     * @param string|array|ride\library\reflection\Callback $callback Callback
+     * @param string|array| \ride\library\reflection\Callback $callback Callback
      * of the event listener
      * @param string $weight Weight in the listener list
      * @return EventListener
-     * @throws ride\library\event\exception\EventException when a invalid
+     * @throws \ride\library\event\exception\EventException when a invalid
      * argument has been provided
-     * @throws ride\library\event\exception\EventException when the weight of
+     * @throws \ride\library\event\exception\EventException when the weight of
      * the event listener is already set
      */
     public function addEventListener($event, $callback, $weight = null);
@@ -34,7 +34,7 @@ interface EventManager {
      * Checks if there are event listeners registered for the provided event
      * @param string $event Name of the event
      * @return boolean
-     * @throws ride\library\event\exception\EventException when a invalid
+     * @throws \ride\library\event\exception\EventException when a invalid
      * event name has been provided
      */
     public function hasEventListeners($event);

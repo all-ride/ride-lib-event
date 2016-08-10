@@ -30,7 +30,7 @@ class EventListener {
     /**
      * Constructs a new event listener
      * @param string $event Name of the event
-     * @param ride\library\Callback|array|string $callback Callback to invoke
+     * @param \ride\library\Callback|array|string $callback Callback to invoke
      * @param integer $weight Weight of the listener
      * @return null
      */
@@ -69,7 +69,7 @@ class EventListener {
      * Sets the event name
      * @param string $event Name of the event
      * @return null
-     * @throws ride\library\event\exception\EventException when the name is
+     * @throws \ride\library\event\exception\EventException when the name is
      * empty or invalid
      */
     protected function setEvent($event) {
@@ -90,7 +90,7 @@ class EventListener {
 
     /**
      * Sets the callback of this listener
-     * @param string|array|ride\library\Callback $callback
+     * @param string|array| \ride\library\Callback $callback
      * @return null
      */
     protected function setCallback($callback) {
@@ -103,7 +103,7 @@ class EventListener {
 
     /**
      * Gets the callback of this listener
-     * @return string|array|ride\library\Callback
+     * @return string|array| \ride\library\Callback
      */
     public function getCallback() {
         return $this->callback;
@@ -113,7 +113,7 @@ class EventListener {
      * Sets the weight
      * @param integer $weight Weight of this listener
      * @return null
-     * @throws ride\library\event\exception\EventException when the provided
+     * @throws \ride\library\event\exception\EventException when the provided
      * weight is invalid
      */
     public function setWeight($weight) {

@@ -32,7 +32,7 @@ class Event {
      * @param string $event Name of the event
      * @param array $arguments Arguments for the event listener
      * @return null
-     * @throws ride\library\event\exception\EventException when the name is
+     * @throws \ride\library\event\exception\EventException when the name is
      * empty or invalid
      */
     public function __construct($name, array $arguments = null) {
@@ -54,7 +54,7 @@ class Event {
      * Sets the event name
      * @param string $name Name of the event
      * @return null
-     * @throws ride\library\event\exception\EventException when the name is
+     * @throws \ride\library\event\exception\EventException when the name is
      * empty or invalid
      */
     protected function setName($name) {

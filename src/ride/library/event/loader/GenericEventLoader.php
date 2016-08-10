@@ -6,13 +6,13 @@ use ride\library\event\loader\io\EventListenerIO;
 use ride\library\event\EventManager;
 
 /**
- * Generic implementation of a event loader
+ * Generic implementation of an event loader
  */
 class GenericEventLoader implements EventLoader {
 
     /**
      * I/O implementation
-     * @var ride\library\event\loader\io\EventListenerIO
+     * @var \ride\library\event\loader\io\EventListenerIO
      */
     protected $io;
 
@@ -24,7 +24,7 @@ class GenericEventLoader implements EventLoader {
 
     /**
      * Constructs a new event loader
-     * @param ride\library\event\loader\io\EventIO $io
+     * @param \ride\library\event\loader\io\EventIO $io
      * @return null
      */
     public function __construct(EventListenerIO $io) {
@@ -52,7 +52,7 @@ class GenericEventLoader implements EventLoader {
 
     /**
      * Registers the event listeners for the provided
-     * @param unknown_type $event
+     * @param string $event Name of the event
      * @param EventManager $eventManager
      */
     protected function registerEventListeners($event, EventManager $eventManager) {
