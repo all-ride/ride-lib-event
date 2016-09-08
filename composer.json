@@ -13,7 +13,12 @@
     },
     "autoload": {
         "psr-0": {
-            "ride\\library\\event\\": ["src/", "test/src/"]
+            "ride\\library\\event\\": ["src/"]
+        }
+    },
+    "autoload-dev": {
+        "psr-0": {
+            "ride\\library\\event\\": ["test/src/"]
         }
     }
 }

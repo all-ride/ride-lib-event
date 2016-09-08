@@ -2,24 +2,26 @@
 
 Event library of the PHP Ride framework.
 
-## EventManager
+## What's In This Library
+
+### EventManager
 
 The _EventManager_ interface is the facade for this event system.
 You can add and remove event listeners and trigger events from here.
 
-A generic implementation is provider by the _GenericEventListener_ class.
+A generic implementation is provided by the _GenericEventManager_ class.
 
-## Event
+### Event
 
 When you trigger an event on the _EventManager_, an _Event_ instance is created and passed to the listeners.
 The _Event_ class holds the name of the event, potential arguments and gives you the possibility to stop cascading to the following listeners.
 
-## EventListener
+### EventListener
 
 An _EventListener_ instance defines the event, the callback and weight of a listener.
 Listeners with a lower weight, will be invoked before listeners with a higher weight.
 
-## EventLoader
+### EventLoader
 
 The _GenericEventManager_ has lazy load capabilities through the _EventLoader_ interface.
 
@@ -75,4 +77,12 @@ $eventLoader = new GenericEventLoader($eventListenerIO);
 // all the events will be read at the first trigger, but only initialized when 
 // the actual event is triggered
 $eventManager->setEventLoader($eventLoader);
+```
+
+## Installation
+
+You can use [Composer](http://getcomposer.org) to install this library.
+
+```
+composer require ride/lib-event
 ```

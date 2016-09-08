@@ -23,7 +23,9 @@ class GenericEventManagerTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals(GenericEventManager::DEFAULT_MAX_EVENT_LISTENERS, $this->getProperty($eventManager, 'maxEventListeners'));
         $this->assertNotNull($this->getProperty($eventManager, 'invoker'));
 
-        $invoker = $this->getMock('ride\\library\\reflection\\Invoker');
+        $invoker = $this->getMockBuilder('ride\\library\\reflection\\Invoker')
+                        ->getMock();
+
         $eventManager = new GenericEventManager($invoker, $maxEventListeners);
         $this->assertEquals($maxEventListeners, $this->getProperty($eventManager, 'maxEventListeners'));
         $this->assertEquals($invoker, $this->getProperty($eventManager, 'invoker'));
@@ -49,7 +51,10 @@ class GenericEventManagerTest extends PHPUnit_Framework_TestCase {
     public function testEventLoader() {
         $eventManager = new GenericEventManager();
 
-        $loader = $this->getMock('ride\\library\\event\\loader\\EventLoader', array('loadEventListeners'));
+        $loader = $this->getMockBuilder('ride\\library\\event\\loader\\EventLoader')
+                       ->setMethods(array('loadEventListeners'))
+                       ->getMock();
+
         $loader->expects($this->once())->method('loadEventListeners');
 
         $this->assertNull($eventManager->getEventLoader());
