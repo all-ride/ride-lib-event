@@ -28,10 +28,12 @@ class GenericEventLoaderTest extends PHPUnit_Framework_TestCase {
             ),
         );
 
-        $eventManager = $this->getMock('ride\\library\\event\\EventManager');
+        $eventManager = $this->getMockBuilder('ride\\library\\event\\EventManager')
+                             ->getMock();
         $eventManager->expects($this->once())->method('addEventListener')->with($this->equalTo($event), $this->equalTo($callback), $this->equalTo($weight));
 
-        $io = $this->getMock('ride\\library\\event\\loader\\io\\EventListenerIO');
+        $io = $this->getMockBuilder('ride\\library\\event\\loader\\io\\EventListenerIO')
+                   ->getMock();
         $io->expects($this->once())->method('readEventListeners')->will($this->returnValue($ioResult));
 
         $eventLoader = new GenericEventLoader($io);

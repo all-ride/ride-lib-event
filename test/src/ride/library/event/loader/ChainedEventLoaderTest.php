@@ -26,9 +26,12 @@ class ChainedEventLoaderTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testAddAndRemove() {
-        $loader1 = $this->getMock('ride\\library\\event\\loader\\EventLoader');
-        $loader2 = $this->getMock('ride\\library\\event\\loader\\EventLoader');
-        $loader3 = $this->getMock('ride\\library\\event\\loader\\EventLoader');
+        $loader1 = $this->getMockBuilder('ride\\library\\event\\loader\\EventLoader')
+                        ->getMock();
+        $loader2 = $this->getMockBuilder('ride\\library\\event\\loader\\EventLoader')
+                        ->getMock();
+        $loader3 = $this->getMockBuilder('ride\\library\\event\\loader\\EventLoader')
+                        ->getMock();
 
         $this->eventLoader->addEventLoader($loader1);
         $this->eventLoader->addEventLoader($loader2);
@@ -46,10 +49,12 @@ class ChainedEventLoaderTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testLoadEventListeners() {
-        $loader1 = $this->getMock('ride\\library\\event\\loader\\EventLoader');
+        $loader1 = $this->getMockBuilder('ride\\library\\event\\loader\\EventLoader')
+                        ->getMock();
         $loader1->expects($this->once())->method('loadEventListeners');
 
-        $loader2 = $this->getMock('ride\\library\\event\\loader\\EventLoader');
+        $loader2 = $this->getMockBuilder('ride\\library\\event\\loader\\EventLoader')
+                        ->getMock();
         $loader2->expects($this->once())->method('loadEventListeners');
 
         $this->eventLoader->addEventLoader($loader1);

@@ -26,9 +26,12 @@ class ChainedEventLoaderTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testAddAndRemove() {
-        $io1 = $this->getMock('ride\\library\\event\\loader\\io\\EventListenerIO');
-        $io2 = $this->getMock('ride\\library\\event\\loader\\io\\EventListenerIO');
-        $io3 = $this->getMock('ride\\library\\event\\loader\\io\\EventListenerIO');
+        $io1 = $this->getMockBuilder('ride\\library\\event\\loader\\io\\EventListenerIO')
+                    ->getMock();
+        $io2 = $this->getMockBuilder('ride\\library\\event\\loader\\io\\EventListenerIO')
+                    ->getMock();
+        $io3 = $this->getMockBuilder('ride\\library\\event\\loader\\io\\EventListenerIO')
+                    ->getMock();
 
         $this->eventListenerIO->addEventListenerIO($io1);
         $this->eventListenerIO->addEventListenerIO($io2);
@@ -85,10 +88,12 @@ class ChainedEventLoaderTest extends PHPUnit_Framework_TestCase {
         	),
         );
 
-        $io1 = $this->getMock('ride\\library\\event\\loader\\io\\EventListenerIO');
+        $io1 = $this->getMockBuilder('ride\\library\\event\\loader\\io\\EventListenerIO')
+                    ->getMock();
         $io1->expects($this->once())->method('readEventListeners')->will($this->returnValue($result1));
 
-        $io2 = $this->getMock('ride\\library\\event\\loader\\io\\EventListenerIO');
+        $io2 = $this->getMockBuilder('ride\\library\\event\\loader\\io\\EventListenerIO')
+                    ->getMock();
         $io2->expects($this->once())->method('readEventListeners')->will($this->returnValue($result2));
 
         $this->eventListenerIO->addEventListenerIO($io1);
